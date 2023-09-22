@@ -1,4 +1,7 @@
-
+body{
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Roboto', sans-serif;
+}
 #main{
     display: flex;
     flex-direction: row;
@@ -24,6 +27,16 @@ border-radius: 25px;
 border-color: #CCC;
 padding-left: 15px;
 }
-#results{
-    flex-direction: row;
+.totalResult{margin-left: 12rem;font-size: 14px;color:rgb(62, 62, 62)}
+.result{
+    max-width: 640px;
+    margin-left: 12rem;
+    font-weight: 500;
+}
+.result h3{
+    color: #0364b9;
+    margin-bottom: 4px;
+}
+.result span{
+    color:rgb(25, 25, 25)
 }
