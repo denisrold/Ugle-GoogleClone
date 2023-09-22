@@ -22,16 +22,24 @@
     margin-bottom: 20px;
     height: 30px;
     border-radius: 25px;
+    border-width: 1px;
     border-color: #CCC;
     padding-left: 15px;
-        }
+    caret-color: #363636;
+}
+input:focus{
+    outline: none;
+}
+    
 
         .buttons{
             margin-left: auto;
             margin-right: auto;
         }
         button{
-            
+            border-width: 1px;
+            border-color: #CCC;
+            background-color: transparent;
             padding: 7px 15px;
         }
  

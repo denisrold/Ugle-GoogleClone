@@ -24,8 +24,13 @@ margin-top: 1.3rem;
 margin-left: 11rem;
 height: 30px;
 border-radius: 25px;
+border-width: 1px;
 border-color: #CCC;
 padding-left: 15px;
+caret-color: #363636;
+}
+input:focus{
+    outline: none;
 }
 .totalResult{margin-left: 12rem;font-size: 14px;color:rgb(62, 62, 62)}
 .result{
