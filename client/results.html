@@ -13,7 +13,7 @@
     <div id="main">
         <div id='headerstyles'>
             <img id="logo" src="img/logo.png" alt="logo">
-            <input type="text">
+            <input id="txtSearch" type="text">
         </div>   
     </div>
     <hr/> 
@@ -40,5 +40,14 @@
         </div>
     </div>
    
+    <script>
+        let aux = document.location.href.split("?query=");
+        let query = aux[1].replace(/\%20/g," ")
+        let inputValue=document.getElementById("txtSearch").value = query;
+        
+        fetch("http://localhost:8080/api/search?query="+query)
+        .then(response=>response.json())
+        .then(console.log(json))
+    </script>
 </body>
 </html>
