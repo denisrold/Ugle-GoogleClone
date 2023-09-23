@@ -1,5 +1,6 @@
 package com.ugle.ugle.controlllers;
 
+import com.ugle.ugle.entities.WebPage;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,5 +13,7 @@ public class SearchController {
 
     public List<WebPage> search(){
         List<WebPage> result = new ArrayList<>();
+
+        return result;
     }
 }
