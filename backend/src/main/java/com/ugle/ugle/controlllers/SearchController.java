@@ -2,6 +2,7 @@ package com.ugle.ugle.controlllers;
 
 import com.ugle.ugle.entities.WebPage;
 import com.ugle.ugle.services.SearchService;
+import com.ugle.ugle.services.SpiderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +16,8 @@ public class SearchController {
     //AutoWired crea un objeto cuando se levanta el servicio- crea un objeto SearchService sin necesidad de usar = new Searchservice;
     @Autowired
     private SearchService service;
+    @Autowired
+    private SpiderService spiderService;
     @RequestMapping(value="api/search",method = RequestMethod.GET)
     public List<WebPage> search(@RequestParam Map<String,String> params){
         //api/search?query=Download&lang=en
@@ -22,5 +25,10 @@ public class SearchController {
         //params.get("lang");
         String query = params.get("query");
         return service.search(query);
+    }
+
+    @RequestMapping(value="api/test",method = RequestMethod.GET)
+    public String search(){
+        return spiderService.indexWebPage();
     }
 }
