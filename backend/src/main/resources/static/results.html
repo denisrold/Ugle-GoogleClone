@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ugle Search</title>
+    <link rel="stylesheet" href="results.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Roboto:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="main">
+        <div id='headerstyles'>
+            <img id="logo" src="img/logo.png" alt="logo">
+            <input id="txtSearch" type="text">
+        </div>   
+    </div>
+    <hr/> 
+    <div id="results">
+        <span class="totalResult">Cerca de 10,290,000,000 resultados hardcodeados (0.42 segundos)</span>
+        <div id="links"></div>
+    </div>
+
+    <script>
+        let aux = document.location.href.split("?query=");
+        let query = aux[1].replace(/\%20/g," ")
+        let inputValue=document.getElementById("txtSearch").value = query;
+        
+        fetch("http://localhost:8080/api/search?query="+query)
+        .then(response=>  response.json())
+        .then(json=>{
+        let html = "";
+        for(let resultSearch of json){
+        html += getHtmlResultSearch(resultSearch)
+        console.log(html)
+        }
+        document.getElementById("links").outerHTML = html;
+    }
+        )
+
+        function getHtmlResultSearch(resultSearch){
+            let description = resultSearch.description;
+            return ` <div class="result">
+            <h3><a href="${resultSearch.url}" target="_blank">${resultSearch.title}</a></h3>
+            <span>${resultSearch.description}</span>
+        </div>`
+        }
+    </script>
+</body>
+</html>

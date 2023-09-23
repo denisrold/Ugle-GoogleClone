@@ -1,0 +1,45 @@
+
+        #main{
+            display: flex;
+            flex-direction: column;
+            width: 40%;
+            margin: auto;
+            justify-content: center; 
+            align-items: center; 
+            height: 70vh;
+        }
+        #logo{
+        width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+    }
+
+    input{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 30px;
+    border-radius: 25px;
+    border-width: 1px;
+    border-color: #CCC;
+    padding-left: 15px;
+    caret-color: #363636;
+}
+input:focus{
+    outline: none;
+}
+    
+
+        .buttons{
+            margin-left: auto;
+            margin-right: auto;
+        }
+        button{
+            border-width: 1px;
+            border-color: #CCC;
+            background-color: transparent;
+            padding: 7px 15px;
+        }
+ 
