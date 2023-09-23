@@ -9,13 +9,19 @@
 <body>
     <div id="main">
         <img id="logo" src="img/logo.png" alt="logo">
-        <input type="text">
+        <input  id="searchInput" type="text">
         <div class="buttons">
-            <button id="search">  Search in Ugle  </button>
+            <button onClick="search()" id="search">  Search in Ugle  </button>
             <button>I'm Feeling Lucky</button>
         </div>
    
     </div>
-    
+    <script>
+        function search(){
+          let textSearch = document.getElementById('searchInput').value;
+          document.location.href = 'results.html?query='+ textSearch;
+        };
+
+    </script>
 </body>
 </html>
