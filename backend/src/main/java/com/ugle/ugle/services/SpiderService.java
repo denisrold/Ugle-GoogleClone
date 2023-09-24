@@ -13,13 +13,15 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 @Service
 public class SpiderService {
     @Autowired
     private SearchService searchService;
     public void indexWebPages(){
        List<WebPage> linksToIndex = searchService.getLinksToIndex();
-       linksToIndex.stream().forEach(webPage->{
+       linksToIndex.stream().parallel().forEach(webPage->{
            try{
                indexWebPage(webPage);
            }
@@ -85,8 +87,9 @@ public class SpiderService {
                 .filter(link -> Arrays.stream(excludeExtensions)
                 .noneMatch(extension-> link.endsWith(extension)))
                 .map(link-> link.startsWith("/") ? domain+link:link)
+                .filter(link->link.startsWith("http"))
                 .collect(Collectors.toList());
-      List<String> uniqueLinks= new ArrayList<String>();
+      List<String> uniqueLinks= new ArrayList<>();
       uniqueLinks.addAll(new HashSet<String>(resultLinks));
 
       return uniqueLinks;
@@ -112,9 +115,10 @@ public class SpiderService {
             String encoding = conn.getContentEncoding();
             //download information
             InputStream input = conn.getInputStream();
-            String result = new BufferedReader(new InputStreamReader(input))
-                    .lines().collect(Collectors.joining());
-            return result;
+            Stream<String> lines = new BufferedReader(new InputStreamReader(input))
+                    .lines();
+
+            return lines.collect(Collectors.joining());
         }
         catch (IOException e){
             System.out.println(e.getMessage());
