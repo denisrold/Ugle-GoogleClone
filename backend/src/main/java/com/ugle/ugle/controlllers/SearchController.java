@@ -27,8 +27,8 @@ public class SearchController {
         return service.search(query);
     }
 
-    @RequestMapping(value="api/test",method = RequestMethod.GET)
-    public String search(){
-        return spiderService.indexWebPage();
+    @RequestMapping(value = "api/test", method = RequestMethod.GET)
+    public void test() {
+        spiderService.indexWebPages();
     }
 }

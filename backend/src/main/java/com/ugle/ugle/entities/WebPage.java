@@ -22,4 +22,8 @@ public class WebPage {
     private String title;
     @Column(name="description")
     private String description;
+
+    public WebPage(String url) {
+        this.url = url;
+    }
 }
