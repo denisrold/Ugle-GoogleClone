@@ -5,11 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ugle Search</title>
     <link rel="stylesheet" href="style.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        #inputContent{
+    position: relative;
+}
+
+#searchIcon{
+    position: absolute;
+    top:1.7rem;
+    left: 0.5em;
+    color:#0364b9
+}
+#inputContent{
+    position: relative;
+    width: 100%;
+}
+
+
+
+    </style>
 </head>
 <body>
     <div id="main">
         <img id="logo" src="img/logo.png" alt="logo">
-        <input  id="searchInput" type="text">
+        <div id="inputContent">
+            <input id="searchInput" type="text">
+              <i id="searchIcon" class="material-icons" style="font-size: 25px;">search</i>
+        </div>
         <div class="buttons">
             <button onClick="search()" id="search">  Search in Ugle  </button>
             <button>I'm Feeling Lucky</button>
