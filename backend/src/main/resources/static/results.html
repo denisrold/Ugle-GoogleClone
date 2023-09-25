@@ -9,6 +9,28 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Roboto:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>   
+        #inputContent{
+           position: relative;
+       }
+       
+       #searchIcon{
+           position: absolute;
+           top:1.7rem;
+           left:47.5rem;
+           color:#0364b9
+       }
+       #searchIcon {
+           cursor: pointer;
+       }
+       #searchIcon:hover{
+           cursor: pointer;
+           transform: scale(1.1);
+           transition: all;
+           transition-duration: 0.1s;
+       }
+   </style>
+
 </head>
 <body>
     <div id="main">
@@ -16,9 +38,7 @@
             <img id="logo" src="img/logo.png" alt="logo">
             <div id="inputContent">
                 <input id="txtSearch" type="text">
-                <div id="searchIcon">
-                    <i  class="material-icons" style="font-size: 25px;">search</i>
-                </div>
+                  <i id="searchIcon" class="material-icons" style="font-size: 25px;">search</i>
             </div>
         </input>
         </div>   
@@ -53,13 +73,18 @@
             <span>${resultSearch.description}</span>
         </div>`
         }
-    
-    document.addEventListener("DOMContentLoaded", function () {
-        document.addEventListener("keyup", function (event) {
+        document.addEventListener("DOMContentLoaded", function () {
+    // Agregar un listener para el evento "keyup" del input
+    document.addEventListener("keyup", function (event) {
         if (event.key === "Enter" && event.target.id === "txtSearch") {
             miFuncion();
         }
-        });
+    });
+
+    // Agregar un listener para el evento "click" en el elemento con id "searchIcon"
+    document.getElementById("searchIcon").addEventListener("click", function(event) {
+        miFuncion();
+    });
 
     function miFuncion() {
         let inputQuery = document.getElementById("txtSearch");
@@ -68,7 +93,6 @@
         document.location.href = 'results.html?query=' + encodeURIComponent(query);
     }
 });
-
     </script>
 </body>
 </html>
