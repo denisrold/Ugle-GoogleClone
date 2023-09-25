@@ -102,8 +102,9 @@ public class SpiderService {
 
     public String getDescription(String content){
         String[] aux = content.split("<meta name=\"description\" content=\"");
-        String[] aux2 = aux[1].split("\">");
-        return aux2[0];
+        String[] aux2 = aux[1].split("/>");
+        String[] aux3 = aux2[0].split("\">");
+        return aux3[0];
     };
     private static String getWebContent(String link) {
         try{
