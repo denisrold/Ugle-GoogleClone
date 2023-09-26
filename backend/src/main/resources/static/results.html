@@ -139,6 +139,7 @@ list-style: none;
         let query = aux[1].replace(/\%20/g," ")
         let inputValue=document.getElementById("txtSearch").value = query;
         let count = 0;
+       
         const itemsPerPage = 6;
         const items = [];
         let totalPage;
@@ -146,15 +147,19 @@ list-style: none;
         let currentPage = 1;
 
         function performSearch(query,page){
+            const startTime =Date.now();
             fetch("http://localhost:8080/api/search?query="+query)
         .then(response=>  response.json())
         .then(json=>{
         let html = "";
+        const endTime = Date.now();
+        let performanceTime = endTime-startTime;
+        let formatedTime = (performanceTime/1000).toFixed(2)+"s"
         for(let resultSearch of json){
         count++
         items.push(getHtmlResultSearch(resultSearch))
         }
-        document.getElementById("count").outerHTML = `<span class="totalResult">Cerca de ${count} resultados (0.42 segundos)</span>`//seguir desde aca
+        document.getElementById("count").outerHTML = `<span class="totalResult">Cerca de ${count} resultados (${formatedTime})</span>`//seguir desde aca
         displayItems(page);
         updatePagination();
         }
