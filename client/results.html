@@ -46,8 +46,21 @@
         let inputValue=document.getElementById("txtSearch").value = query;
         
         fetch("http://localhost:8080/api/search?query="+query)
-        .then(response=>response.json())
-        .then(console.log(json))
+        .then(response=>  response.json())
+        .then(json=>{console.log(json);
+        for(let resultSearch of json){
+            console.log(resultSearch);
+        }}
+        )
+
+        function getHtmlResultSearch(){
+            let title =  "Revista Mensaje - Revista Digital"
+            let description = "Una plataforma digital para promover el diálogo, información, reflexión y justicia social. Enfoque Político y Social. Tipos: Enfoque Político y Social, Cultura, Ciencia y Medioambiente, Integración y Diversidad."
+            return ` <div class="result">
+            <h3>${title}</h3>
+            <span>${description}</span>
+        </div>`
+        }
     </script>
 </body>
 </html>
