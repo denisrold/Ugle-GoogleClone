@@ -128,8 +128,12 @@ list-style: none;
 .pagination-button:focus {
   outline: none;
 }
+#nextPage{
+    visibility: hidden;
+}
 #prevPage,#nextPage{
     margin-top: 3.1rem;
+    font-size: smaller;
 }
 
    </style>
@@ -162,6 +166,7 @@ list-style: none;
         let aux = document.location.href.split("?query=");
         let query = aux[1].replace(/\%20/g," ")
         let inputValue=document.getElementById("txtSearch").value = query;
+        let nextpagevisibility = document.getElementById('nextPage');
         let count = 0;
         const itemsPerPage = 6;
         const items = [];
@@ -186,6 +191,7 @@ list-style: none;
         document.getElementById("count").outerHTML = `<span class="totalResult">Cerca de ${count} resultados (${formatedTime})</span>`
         displayItems(page);
         updatePagination();
+        nextpagevisibility.style.visibility = 'visible';
         }
     )}
         function getHtmlResultSearch(resultSearch){
