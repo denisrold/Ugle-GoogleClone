@@ -36,14 +36,18 @@
               <i id="searchIcon" class="material-icons" style="font-size: 25px;">search</i>
         </div>
         <div class="buttons">
-            <button onClick="search()" id="search">  Search in Ugle  </button>
-            <button>I'm Feeling Lucky</button>
+            <button onClick="search()" id="search" disabled="true">  Search in Ugle  </button>
+            <button disabled="true">I'm Feeling Lucky</button>
         </div>
    
     </div>
     <script>
         function search(){
           let textSearch = document.getElementById('searchInput').value;
+          if(textSearch != ""){
+            const buttonDisabled = document.getElementById('search');
+            buttonDisabled.removeAttribute("disabled");
+          }
           document.location.href = 'results.html?query='+ textSearch;
         };
         document.addEventListener("keyup", function (event) {
