@@ -2,12 +2,12 @@ let aux = document.location.href.split("?query=");
 let query = aux[1].replace(/\%20/g, " ");
 let inputValue = (document.getElementById("txtSearch").value = query);
 let count = 0;
-
 const itemsPerPage = 6;
 const items = [];
 let totalPage;
 let itemsList;
 let currentPage = 1;
+const maxPageButtons = 5;
 
 function performSearch(query, page) {
   const startTime = Date.now();
@@ -15,11 +15,9 @@ function performSearch(query, page) {
     .then((response) => response.json())
     .then((json) => {
       let html = "";
-      //timePerformance Search
       const endTime = Date.now();
       let performanceTime = endTime - startTime;
       let formatedTime = (performanceTime / 1000).toFixed(2) + "s";
-
       for (let resultSearch of json) {
         count++;
         items.push(getHtmlResultSearch(resultSearch));
@@ -33,9 +31,9 @@ function performSearch(query, page) {
 }
 function getHtmlResultSearch(resultSearch) {
   return ` <div class="result">
-            <h3><a href="${resultSearch.url}" target="_blank">${resultSearch.title}</a></h3>
-            <span>${resultSearch.description}</span>
-        </div>`;
+    <h3><a href="${resultSearch.url}" target="_blank">${resultSearch.title}</a></h3>
+    <span>${resultSearch.description}</span>
+</div>`;
 }
 document.addEventListener("DOMContentLoaded", function () {
   document.addEventListener("keyup", function (event) {
@@ -70,15 +68,15 @@ function displayItems(pageNumber) {
   itemsList.innerHTML = "";
   if (!items.length) {
     const noResults = ` <div class="sugerenciasList">
-            <p> No se han encontrado resultados para tu búsqueda:</p>
-            <span>${"(" + inputValue + ")"}</span>
-            <p >Sugerencias:</p>
-            <ul >
-            <li>Asegúrate de que todas las palabras estén escritas correctamente.</li>
-            <li>Prueba diferentes palabras clave.</li>
-            <li>Prueba palabras clave más generales.</li>
-            </ul>
-        </div>`;
+    <p> No se han encontrado resultados para tu búsqueda:</p>
+    <span>${"(" + inputValue + ")"}</span>
+    <p >Sugerencias:</p>
+    <ul >
+    <li>Asegúrate de que todas las palabras estén escritas correctamente.</li>
+    <li>Prueba diferentes palabras clave.</li>
+    <li>Prueba palabras clave más generales.</li>
+    </ul>
+</div>`;
     itemsList.innerHTML = noResults;
   }
   itemsToDisplay.forEach((item) => {
@@ -91,12 +89,23 @@ function displayItems(pageNumber) {
 //pagination buttons and call
 function updatePagination() {
   totalPage = Math.ceil(count / itemsPerPage);
-  if (totalPage > 5) {
-    itemsPerPage = 10;
-  }
+
   const pagination = document.getElementById("pagination");
   pagination.innerHTML = "";
-  for (let i = 1; i <= totalPage; i++) {
+
+  let startRange = currentPage - Math.floor(maxPageButtons / 2);
+  let endRange = currentPage + Math.floor(maxPageButtons / 2);
+
+  if (startRange < 1) {
+    startRange = 1;
+    endRange = Math.min(maxPageButtons, totalPage);
+  }
+  if (endRange > totalPage) {
+    endRange = totalPage;
+    startRange = Math.max(1, totalPage - maxPageButtons + 1);
+  }
+
+  for (let i = startRange; i <= endRange; i++) {
     const button = document.createElement("button");
     button.textContent = i;
     button.type = "button";
@@ -115,5 +124,36 @@ function updatePagination() {
     pagination.appendChild(button);
   }
 }
+// Obtén referencias a los botones de navegación
+const prevPageButton = document.getElementById("prevPage");
+const nextPageButton = document.getElementById("nextPage");
 
+// Agrega event listeners para los botones de navegación
+prevPageButton.addEventListener("click", () => navigatePage(-1));
+nextPageButton.addEventListener("click", () => navigatePage(1));
+
+// Función para navegar entre páginas
+function navigatePage(direction) {
+  const newPage = currentPage + direction;
+
+  if (newPage >= 1 && newPage <= totalPage) {
+    const currentPageRemove = document.querySelector(".page-current");
+    if (currentPageRemove) {
+      currentPageRemove.classList.remove("page-current");
+    }
+    currentPage = newPage;
+    displayItems(newPage);
+    updatePagination();
+    updateNavigationButtons();
+  }
+}
+
+// Actualiza la visibilidad de los botones de navegación
+function updateNavigationButtons() {
+  prevPageButton.style.display = currentPage === 1 ? "none" : "block";
+  nextPageButton.style.display = currentPage === totalPage ? "none" : "block";
+}
+
+// Llama a esta función después de actualizar la paginación
+updateNavigationButtons();
 performSearch(query, 1);

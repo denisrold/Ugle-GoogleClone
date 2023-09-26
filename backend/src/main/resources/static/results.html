@@ -86,13 +86,14 @@ list-style: none;
 }
 #pagination{
     margin-top: 3rem;
-    margin-left: 46%;
+   
 }
 #pagination button{
     border: none;
     color: #525252;
     background-color: transparent;
     margin-right: 0.8rem;
+    margin-left: 0.8rem;
     cursor: pointer;
     font-weight: 500;
     font-size: large;
@@ -109,6 +110,12 @@ list-style: none;
 .sugerenciasList span{
     font-size: large;
 }
+.pagination-display{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .pagination-button {
   border: none;
   background-color: transparent;
@@ -116,11 +123,15 @@ list-style: none;
   font-weight: 500;
   font-size: large;
   color: #525252;
+  margin-top: 2.8rem;
 }
-
 .pagination-button:focus {
   outline: none;
 }
+#prevPage,#nextPage{
+    margin-top: 3.1rem;
+}
+
    </style>
 
 </head>
@@ -138,17 +149,13 @@ list-style: none;
     <hr/> 
     <div id="results">
         <div id="count"></div>
-        <ul id="items-list">
-            <!-- Aquí se mostrarán los elementos de la página actual -->
-          </ul>
-          <button id="prevPage" class="pagination-button" tabindex="-1">Anterior</button>
+        <ul id="items-list"></ul>
+          <div class="pagination-display">
+          <button id="prevPage" class="pagination-button">&lt;</button>
           <div id="pagination">
-            <!-- Aquí se mostrarán los enlaces de paginación -->
           </div>
-          <button id="nextPage" class="pagination-button">Siguiente</button>
-    </div>
-    <div id="pagination-container">
-
+          <button id="nextPage" class="pagination-button">></button>
+          </div>
     </div>
 
     <script>
@@ -302,13 +309,13 @@ function navigatePage(direction) {
 
 // Actualiza la visibilidad de los botones de navegación
 function updateNavigationButtons() {
-    prevPageButton.style.display = currentPage === 1 ? 'none' : 'block';
-    nextPageButton.style.display = currentPage === totalPage ? 'none' : 'block';
+    prevPageButton.style.display = currentPage === 1 ? 'none' : 'flex';
+    nextPageButton.style.display = currentPage === totalPage ? 'none' : 'flex';
 }
 
 // Llama a esta función después de actualizar la paginación
 updateNavigationButtons();
-    performSearch(query, 1);
+performSearch(query, 1);
     </script>
 </body>
 </html>
