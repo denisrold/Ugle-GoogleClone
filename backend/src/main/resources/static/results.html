@@ -81,6 +81,9 @@ input:focus{
     transition: all;
     transition-duration: 0.1s;
 }
+#items-list{
+list-style: none;
+}
    </style>
 
 </head>
@@ -98,31 +101,44 @@ input:focus{
     <hr/> 
     <div id="results">
         <div id="count"></div>
-        
-        <div id="links"></div>
     </div>
-
+    <div id="pagination-container">
+        <ul id="items-list">
+          <!-- Aquí se mostrarán los elementos de la página actual -->
+        </ul>
+        <div id="pagination">
+          <!-- Aquí se mostrarán los enlaces de paginación -->
+        </div>
+      </div>
     <script>
         let aux = document.location.href.split("?query=");
         let query = aux[1].replace(/\%20/g," ")
         let inputValue=document.getElementById("txtSearch").value = query;
         let count = 0;
-        
-        fetch("http://localhost:8080/api/search?query="+query)
+        const itemsPerPage = 6;
+        const items = [];
+        let totalPage;
+        let itemsList;
+
+        function performSearch(query,page){
+            fetch("http://localhost:8080/api/search?query="+query)
         .then(response=>  response.json())
         .then(json=>{
+            console.log("entre")
         let html = "";
         for(let resultSearch of json){
         count++
-        html += getHtmlResultSearch(resultSearch);
+        items.push(getHtmlResultSearch(resultSearch))
+       // html += getHtmlResultSearch(resultSearch);
         }
         document.getElementById("count").outerHTML = `<span class="totalResult">Cerca de ${count} resultados (0.42 segundos)</span>`//seguir desde aca
-        document.getElementById("links").outerHTML = html;
-    }
-        )
+        updatePagination();
+        displayItems(page);
+        //document.getElementById("links").outerHTML = html;
+        }
+    )}
 
         function getHtmlResultSearch(resultSearch){
-            let description = resultSearch.description;
             return ` <div class="result">
             <h3><a href="${resultSearch.url}" target="_blank">${resultSearch.title}</a></h3>
             <span>${resultSearch.description}</span>
@@ -147,6 +163,38 @@ input:focus{
         document.location.href = 'results.html?query=' + encodeURIComponent(query);
     }
 });
+
+    //Pagination
+    function displayItems(pageNumber){
+       startIndex = (pageNumber - 1) * itemsPerPage;
+       endIndex = startIndex + itemsPerPage;
+       const itemsToDisplay = items.slice(startIndex,endIndex);
+
+       itemsList = document.getElementById("items-list");
+       itemsList.innerHTML = '';
+        itemsToDisplay.forEach(item=>{
+            const li = document.createElement('li');
+            li.innerHTML = item;
+            itemsList.appendChild(li);
+        })
+    }
+
+    //pagination buttons and call
+    function updatePagination(){
+        totalPage = Math.ceil(count / itemsPerPage);
+        const pagination = document.getElementById("items-list");
+        pagination.innerHTML = "";
+    }
+        for(let i = 0; i < totalPage; i++){
+            const button = document.createElement("button");
+            button.textContent = i;
+            button.addEventListener("click",()=>{
+                performSearch(query, i);
+            });
+            pagination.appendChild(button);
+        }
+
+    performSearch(query, 1);
     </script>
 </body>
 </html>
