@@ -97,7 +97,8 @@ input:focus{
     </div>
     <hr/> 
     <div id="results">
-        <span class="totalResult">Cerca de 10,290,000,000 resultados hardcodeados (0.42 segundos)</span>
+        <div id="count"></div>
+        
         <div id="links"></div>
     </div>
 
@@ -105,14 +106,17 @@ input:focus{
         let aux = document.location.href.split("?query=");
         let query = aux[1].replace(/\%20/g," ")
         let inputValue=document.getElementById("txtSearch").value = query;
+        let count = 0;
         
         fetch("http://localhost:8080/api/search?query="+query)
         .then(response=>  response.json())
         .then(json=>{
         let html = "";
         for(let resultSearch of json){
-        html += getHtmlResultSearch(resultSearch)
+        count++
+        html += getHtmlResultSearch(resultSearch);
         }
+        document.getElementById("count").outerHTML = `<span class="totalResult">Cerca de ${count} resultados (0.42 segundos)</span>`//seguir desde aca
         document.getElementById("links").outerHTML = html;
     }
         )
