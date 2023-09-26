@@ -1,0 +1,68 @@
+
+#main{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    margin: auto;
+    justify-content: center; 
+    align-items: center; 
+    height: 70vh;
+}
+#logo{
+width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+input{
+width: 100%;
+margin-left: auto;
+margin-right: auto;
+margin-top: 20px;
+margin-bottom: 20px;
+height: 30px;
+border-radius: 25px;
+border-width: 1px;
+border-color: #CCC;
+padding-left: 3rem;
+padding-top: 0.2rem;
+caret-color: #525252;
+font-weight: 540;
+color: #3d3d3d;
+}
+input:focus{
+outline: none;
+}
+
+
+.buttons{
+    margin-left: auto;
+    margin-right: auto;
+}
+button{
+    border-width: 1px;
+    border-color: #CCC;
+    background-color: transparent;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 10px;
+    font-weight: bolder;
+    color: #3b3b3b;
+}
+button:hover{
+    transform: scale(1.05);
+    transition: all;
+    transition: 0.2s;
+}
+#inputContent{
+    position: relative;
+    width: 100%;
+    margin-right: 3rem;
+    }
+#searchIcon{
+    position: absolute;
+    top:1.7rem;
+    left: 0.5em;
+    color:#0364b9
+    }

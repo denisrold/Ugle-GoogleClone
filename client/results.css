@@ -1,15 +1,16 @@
+
 body{
-    font-family: 'Montserrat', sans-serif;
-    font-family: 'Roboto', sans-serif;
+font-family: 'Montserrat', sans-serif;
+font-family: 'Roboto', sans-serif;
 }
 #main{
-    display: flex;
-    flex-direction: row;
-    margin: auto;
+display: flex;
+flex-direction: row;
+margin: auto;
 }
 #headerstyles{
-    width: 100%;
-   height: 5rem;
+width: 100%;
+height: 5rem;
 }
 #logo{
 width: 120px;
@@ -20,28 +21,80 @@ margin-top: 8px;
 
 input{
 width: 40%;
-margin-top: 1.3rem;
+margin-top: 1.5rem;
 margin-left: 11rem;
-height: 30px;
+height: 34px;
 border-radius: 25px;
 border-width: 1px;
 border-color: #CCC;
-padding-left: 15px;
-caret-color: #363636;
+padding-left: 1.5rem;
+caret-color: #525252;
+font-weight: 540;
+color: #3d3d3d;
 }
+
 input:focus{
-    outline: none;
+outline: none;
 }
+
 .totalResult{margin-left: 12rem;font-size: 14px;color:rgb(62, 62, 62)}
 .result{
-    max-width: 640px;
-    margin-left: 12rem;
-    font-weight: 500;
+max-width: 640px;
+margin-left: 12rem;
+font-weight: 500;
 }
 .result h3{
-    color: #0364b9;
-    margin-bottom: 4px;
+color: #0364b9;
+margin-bottom: 4px;
 }
 .result span{
-    color:rgb(25, 25, 25)
+color:rgb(25, 25, 25)
+}
+
+#inputContent{
+position: relative;
+}
+
+#searchIcon{
+position: absolute;
+top:2rem;
+left:48rem;
+color:#0364b9
+}
+#searchIcon {
+cursor: pointer;
+}
+#searchIcon:hover{
+cursor: pointer;
+transform: scale(1.1);
+transition: all;
+transition-duration: 0.1s;
+}
+#items-list{
+list-style: none;
+}
+#pagination{
+margin-top: 3rem;
+margin-left: 46%;
+}
+#pagination button{
+border: none;
+color: #525252;
+background-color: transparent;
+margin-right: 0.8rem;
+cursor: pointer;
+font-weight: 500;
+font-size: large;
+}
+.page-current {
+color: #0364b9 !important;
+}
+.sugerenciasList{
+max-width: 640px;
+margin-left: 12rem;
+font-weight: bolder;
+color: darkslategrey;
+}
+.sugerenciasList span{
+font-size: large;
 }

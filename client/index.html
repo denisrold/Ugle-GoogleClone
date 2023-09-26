@@ -4,15 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ugle Search</title>
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="index.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="index.js"></script>
 </head>
 <body>
     <div id="main">
         <img id="logo" src="img/logo.png" alt="logo">
-        <input type="text">
+        <div id="inputContent">
+            <input id="searchInput" type="text">
+              <i id="searchIcon" class="material-icons" style="font-size: 25px;">search</i>
+        </div>
         <div class="buttons">
-            <button id="search">  Search in Ugle  </button>
-            <button>I'm Feeling Lucky</button>
+            <button onClick="search()" id="search">  Search in Ugle  </button>
+            <button disabled="true">I'm Feeling Lucky</button>
         </div>
    
     </div>
