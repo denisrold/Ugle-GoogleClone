@@ -100,6 +100,12 @@ list-style: none;
 .page-current {
   color: #0364b9 !important;
 }
+.sugerenciasList{
+    max-width: 640px;
+    margin-left: 12rem;
+    font-weight: bolder;
+    color: darkslategrey;
+}
    </style>
 
 </head>
@@ -180,12 +186,26 @@ list-style: none;
 
     //Pagination
     function displayItems(pageNumber){
+       
        startIndex = (pageNumber - 1) * itemsPerPage;
        endIndex = startIndex + itemsPerPage;
        const itemsToDisplay = items.slice(startIndex,endIndex);
 
        itemsList = document.getElementById("items-list");
        itemsList.innerHTML = '';
+       if(!items.length){
+        const noResults = ` <div class="sugerenciasList">
+            <p> No se han encontrado resultados para tu búsqueda:</p>
+            <span>${"("+inputValue+")"}</span>
+            <p >Sugerencias:</p>
+            <ul >
+            <li>Asegúrate de que todas las palabras estén escritas correctamente.</li>
+            <li>Prueba diferentes palabras clave.</li>
+            <li>Prueba palabras clave más generales.</li>
+            </ul>
+        </div>`
+        itemsList.innerHTML = noResults;   
+        }
         itemsToDisplay.forEach(item=>{
             const li = document.createElement('li');
             li.innerHTML = item;
@@ -196,6 +216,9 @@ list-style: none;
     //pagination buttons and call
     function updatePagination(){
     totalPage = Math.ceil(count / itemsPerPage);
+    if(totalPage > 5){
+        itemsPerPage = 10
+    }
     const pagination = document.getElementById("pagination");
     pagination.innerHTML = "";
     for(let i = 1; i <= totalPage; i++){
