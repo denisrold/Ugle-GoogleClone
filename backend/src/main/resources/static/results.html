@@ -188,6 +188,9 @@ list-style: none;
     function miFuncion() {
         let inputQuery = document.getElementById("txtSearch");
         let query = inputQuery.value;
+        if (/^\s*$/.test(query)) {
+        return
+        }
         document.location.href = 'results.html?query=' + encodeURIComponent(query);
     }
 });
