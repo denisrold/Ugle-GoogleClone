@@ -1,6 +1,7 @@
 let aux = document.location.href.split("?query=");
 let query = aux[1].replace(/\%20/g, " ");
 let inputValue = (document.getElementById("txtSearch").value = query);
+let nextpagevisibility = document.getElementById("nextPage");
 let count = 0;
 const itemsPerPage = 6;
 const items = [];
@@ -27,6 +28,7 @@ function performSearch(query, page) {
       ).outerHTML = `<span class="totalResult">Cerca de ${count} resultados (${formatedTime})</span>`;
       displayItems(page);
       updatePagination();
+      nextpagevisibility.style.visibility = "visible";
     });
 }
 function getHtmlResultSearch(resultSearch) {
@@ -150,8 +152,8 @@ function navigatePage(direction) {
 
 // Actualiza la visibilidad de los botones de navegación
 function updateNavigationButtons() {
-  prevPageButton.style.display = currentPage === 1 ? "none" : "block";
-  nextPageButton.style.display = currentPage === totalPage ? "none" : "block";
+  prevPageButton.style.display = currentPage === 1 ? "none" : "flex";
+  nextPageButton.style.display = currentPage === totalPage ? "none" : "flex";
 }
 
 // Llama a esta función después de actualizar la paginación
