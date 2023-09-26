@@ -109,6 +109,18 @@ list-style: none;
 .sugerenciasList span{
     font-size: large;
 }
+.pagination-button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: large;
+  color: #525252;
+}
+
+.pagination-button:focus {
+  outline: none;
+}
    </style>
 
 </head>
@@ -129,9 +141,11 @@ list-style: none;
         <ul id="items-list">
             <!-- Aquí se mostrarán los elementos de la página actual -->
           </ul>
+          <button id="prevPage" class="pagination-button" tabindex="-1">Anterior</button>
           <div id="pagination">
             <!-- Aquí se mostrarán los enlaces de paginación -->
           </div>
+          <button id="nextPage" class="pagination-button">Siguiente</button>
     </div>
     <div id="pagination-container">
 
@@ -142,12 +156,12 @@ list-style: none;
         let query = aux[1].replace(/\%20/g," ")
         let inputValue=document.getElementById("txtSearch").value = query;
         let count = 0;
-       
         const itemsPerPage = 6;
         const items = [];
         let totalPage;
         let itemsList;
         let currentPage = 1;
+        const maxPageButtons = 5;
 
         function performSearch(query,page){
             const startTime =Date.now();
@@ -227,12 +241,23 @@ list-style: none;
     //pagination buttons and call
     function updatePagination(){
     totalPage = Math.ceil(count / itemsPerPage);
-    if(totalPage > 5){
-        itemsPerPage = 10
-    }
+
     const pagination = document.getElementById("pagination");
     pagination.innerHTML = "";
-    for(let i = 1; i <= totalPage; i++){
+   
+    let startRange = currentPage - Math.floor(maxPageButtons / 2);
+    let endRange = currentPage + Math.floor(maxPageButtons / 2);
+
+    if (startRange < 1) {
+        startRange = 1;
+        endRange = Math.min(maxPageButtons, totalPage);
+    }
+    if (endRange > totalPage) {
+        endRange = totalPage;
+        startRange = Math.max(1, totalPage - maxPageButtons + 1);
+    }
+
+    for (let i = startRange; i <= endRange; i++) {
         const button = document.createElement("button");
         button.textContent = i;
         button.type="button"
@@ -251,7 +276,38 @@ list-style: none;
         pagination.appendChild(button);
     }
 }
+// Obtén referencias a los botones de navegación
+const prevPageButton = document.getElementById("prevPage");
+const nextPageButton = document.getElementById("nextPage");
 
+// Agrega event listeners para los botones de navegación
+prevPageButton.addEventListener("click", () => navigatePage(-1));
+nextPageButton.addEventListener("click", () => navigatePage(1));
+
+// Función para navegar entre páginas
+function navigatePage(direction) {
+  const newPage = currentPage + direction;
+  
+  if (newPage >= 1 && newPage <= totalPage) {
+    const currentPageRemove = document.querySelector(".page-current");
+    if (currentPageRemove) {
+      currentPageRemove.classList.remove("page-current");
+    }
+    currentPage = newPage;
+    displayItems(newPage);
+    updatePagination();
+    updateNavigationButtons();
+  }
+}
+
+// Actualiza la visibilidad de los botones de navegación
+function updateNavigationButtons() {
+    prevPageButton.style.display = currentPage === 1 ? 'none' : 'block';
+    nextPageButton.style.display = currentPage === totalPage ? 'none' : 'block';
+}
+
+// Llama a esta función después de actualizar la paginación
+updateNavigationButtons();
     performSearch(query, 1);
     </script>
 </body>
