@@ -26,7 +26,7 @@ function performSearch(query, page) {
       }
       document.getElementById(
         "count"
-      ).outerHTML = `<span class="totalResult">Cerca de ${count} resultados (${formatedTime})</span>`; //seguir desde aca
+      ).outerHTML = `<span class="totalResult">Cerca de ${count} resultados (${formatedTime})</span>`;
       displayItems(page);
       updatePagination();
     });
