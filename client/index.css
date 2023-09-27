@@ -66,3 +66,60 @@ button:hover{
     left: 0.5em;
     color:#0364b9
     }
+
+    @media (max-width: 768px) {
+        body{background: #eeeeee;}
+        /* Ajusta aquí tus estilos para pantallas pequeñas */
+        #main{
+            width: 70%;
+            margin-top: 5rem;
+        }
+
+        #logo{
+            width: 150px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            #searchIcon{  
+                top:4.5rem;
+                }
+            input{
+                margin-top: 4rem;
+                border: none;
+                box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+                }
+            .buttons{
+                margin-top: 2rem;
+                margin-left: auto;
+                margin-right: auto;
+
+            }
+            button{
+                border-width: 0px;
+                background-color: #ffffff;
+                box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+                padding: 13px 3rem;
+                border-radius: 6px;
+                margin-top: 15px;
+                font-size:medium;
+                color: #3b3b3b;
+            }
+
+    }
+    /* Estilo para pantallas pequeñas (por ejemplo, dispositivos móviles) */
+@media (max-width: 768px) {
+    /* Ajusta aquí tus estilos para pantallas pequeñas */
+
+}
+
+/* Estilo para pantallas medianas (por ejemplo, tablets) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* Ajusta aquí tus estilos para pantallas medianas */
+
+}
+
+/* Estilo para pantallas grandes (por ejemplo, computadoras de escritorio) */
+@media (min-width: 1025px) {
+    /* Ajusta aquí tus estilos para pantallas grandes */
+
+}
