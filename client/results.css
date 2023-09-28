@@ -7,26 +7,28 @@ font-family: 'Roboto', sans-serif;
 #main{
 display: flex;
 flex-direction: row;
-margin: auto;
+width: 90%;
 }
 #headerstyles{
-width: 100%;
+display: flex;
 height: 5rem;
+align-items: center;
+padding-top: .5rem;
+padding-left: 3rem;
+width: 56%;
 }
 
 #logo{
 width: 120px;
-position: absolute;
-left: 32px;
-margin-top: 8px;
 }
-
+.widthInput{
+    flex:1;
+    margin-left: 2rem;
+    }
 input{
+width: 100%;
 border: none;
 box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-width: 40%;
-margin-top: 1.5rem;
-margin-left: 11rem;
 height: 34px;
 border-radius: 25px;
 padding-left: 1.5rem;
@@ -56,7 +58,7 @@ color:rgb(25, 25, 25)
 
 #searchIcon{
 position: absolute;
-top:2.5rem;
+top:2.85rem;
 left:41rem;
 color:#0364b9
 }
@@ -87,7 +89,7 @@ transition-duration: 0.1s;
         font-size: large;
     }
     .page-current {
-      color: #0364b9 !important;
+      color: #0364b9;
     }
     .sugerenciasList{
         max-width: 640px;
@@ -126,8 +128,46 @@ transition-duration: 0.1s;
         margin-top: 3.1rem;
         font-size: smaller;
     }
-
-    @media (max-width: 280px) {
+    @media screen and (min-width: 281px) and (max-width: 375px) {
+        #main{
+            display: flex;
+            flex-direction: column;
+            margin-top:10vh;
+            }
+            #headerstyles{
+            display: flex;
+            flex-direction: column;            
+            align-items: start;
+            width: 45vh;
+            height: fit-content;
+        }
+            
+            #logo{position: relative;
+            display: flex;
+            width: 130px;
+            margin: auto;
+            margin-left: 15%;
+            }
+            #inputContent{
+                position: relative; 
+                width: none;
+                height: none;
+            }
+            input{
+            width: 83%;
+            margin-left: 0;
+            margin-top: 1.5rem;
+            }
+            #txtSearch{
+                height: 2rem;
+            }
+            #searchIcon{
+                top:26vh;
+                left:89%;
+                transform: scale(1.2);
+                }
+    }
+   @media screen and (min-width: 200px) and (max-width: 280px) {
         #main{
             display: flex;
             flex-direction: column;
