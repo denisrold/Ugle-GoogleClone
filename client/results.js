@@ -1,7 +1,8 @@
-let aux = document.location.href.split("?query=");
+/*let aux = document.location.href.split("?query=");
 let query = aux[1].replace(/\%20/g, " ");
-let inputValue = (document.getElementById("txtSearch").value = query);
+let inputValue = (document.getElementById("txtSearch").value = query);*/
 let nextpagevisibility = document.getElementById("nextPage");
+let prevpagevisibility = document.getElementById("prevPage");
 let count = 0;
 const itemsPerPage = 6;
 const items = [];
@@ -29,6 +30,7 @@ function performSearch(query, page) {
       displayItems(page);
       updatePagination();
       nextpagevisibility.style.visibility = "visible";
+      backpagevisibility.style.visibility = "visible";
     });
 }
 function getHtmlResultSearch(resultSearch) {
