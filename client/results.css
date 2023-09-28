@@ -14,8 +14,8 @@ display: flex;
 height: 5rem;
 align-items: center;
 padding-top: .5rem;
-padding-left: 3rem;
-width: 56%;
+padding-left: 2rem;
+width: 57.5%;
 }
 
 #logo{
@@ -128,81 +128,36 @@ transition-duration: 0.1s;
         margin-top: 3.1rem;
         font-size: smaller;
     }
-    @media screen and (min-width: 281px) and (max-width: 375px) {
-        #main{
-            display: flex;
-            flex-direction: column;
-            margin-top:10vh;
-            }
-            #headerstyles{
-            display: flex;
-            flex-direction: column;            
-            align-items: start;
-            width: 45vh;
-            height: fit-content;
-        }
-            
-            #logo{position: relative;
-            display: flex;
-            width: 130px;
-            margin: auto;
-            margin-left: 15%;
-            }
-            #inputContent{
-                position: relative; 
-                width: none;
-                height: none;
-            }
-            input{
-            width: 83%;
-            margin-left: 0;
-            margin-top: 1.5rem;
-            }
-            #txtSearch{
-                height: 2rem;
-            }
-            #searchIcon{
-                top:26vh;
-                left:89%;
-                transform: scale(1.2);
-                }
-    }
+
    @media screen and (min-width: 200px) and (max-width: 280px) {
-        #main{
-            display: flex;
-            flex-direction: column;
-            margin-top:10vh;
-            }
-            #headerstyles{
-            display: flex;
-            flex-direction: column;            
-            align-items: start;
-            width: 45vh;
-            height: fit-content;
+    #main{
+        display: flex;
+        width: 100%;
         }
-            
-            #logo{position: relative;
-            display: flex;
-            width: 130px;
-            margin: auto;
-            margin-left: 15%;
+        #headerstyles{
+        display: flex;
+        flex-direction: column;
+        height: 7.5em;
+        align-items: start;
+        padding-top: 2rem;
+        padding-left: 0rem;
+        width:100%;
+        }
+        
+        #logo{
+        width: 125px;
+        margin-right: 10px;
+        }
+        .widthImg{
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .widthInput{
+            flex:1;
+            margin-left: auto;
+            margin-right: auto;
             }
-            #inputContent{
-                position: relative; 
-                width: none;
-                height: none;
-            }
-            input{
-            width: 83%;
-            margin-left: 0;
-            margin-top: 1.5rem;
-            }
-            #txtSearch{
-                height: 2rem;
-            }
-            #searchIcon{
-                top:26vh;
-                left:89%;
-                transform: scale(1.2);
-                }
+        input{
+        width: 81%;
+        }
         }
