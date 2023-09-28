@@ -7,7 +7,7 @@ font-family: 'Roboto', sans-serif;
 #main{
 display: flex;
 flex-direction: row;
-width: 90%;
+width: 100vw; 
 }
 #headerstyles{
 display: flex;
@@ -15,7 +15,7 @@ height: 5rem;
 align-items: center;
 padding-top: .5rem;
 padding-left: 2rem;
-width: 57.5%;
+width: 57.5vw;
 }
 
 #logo{
@@ -129,35 +129,68 @@ transition-duration: 0.1s;
         font-size: smaller;
     }
 
-   @media screen and (min-width: 200px) and (max-width: 280px) {
-    #main{
-        display: flex;
-        width: 100%;
+
+        @media (max-width: 413px) {
+                #headerstyles{
+                display: flex;
+                flex-direction: column;
+                height: 8em;
+                align-items: start;
+                padding-top: 2rem;
+                padding-left: 0rem;
+                flex: 1;
+                }
+                
+                #logo{
+                width: 125px;
+                margin-right: 0px;
+                }
+                .widthImg{
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+                .widthInput{
+                width: 100vw;
+                    margin-top: .8rem;
+                    margin-left: auto;
+                    margin-right: auto;
+                    }
+                input{
+                width: 90vw;
+                }
+                #searchIcon{
+                    top:7.4rem;
+                    left:20rem;
+        }}
+        @media (max-width: 844px) {
+            #headerstyles{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                padding-top: 1rem;
+                }
+                
+                #logo{
+                width: 125px;
+                margin-right: 0px;
+                }
+
+                .widthInput{
+                    margin-left: 1.5rem;
+                    }
+                input{
+                width: 100%;
+                }
+}
+@media (max-width: 1024px){
+    #headerstyles{
+        width: 80%;
         }
-        #headerstyles{
-        display: flex;
-        flex-direction: column;
-        height: 7.5em;
-        align-items: start;
-        padding-top: 2rem;
-        padding-left: 0rem;
-        width:100%;
-        }
-        
-        #logo{
-        width: 125px;
-        margin-right: 10px;
-        }
-        .widthImg{
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .widthInput{
-            flex:1;
-            margin-left: auto;
-            margin-right: auto;
-            }
-        input{
-        width: 81%;
-        }
+
+}
+        @media (max-width: 1440px){
+            input{
+                width: 72%;
+                }
         }
